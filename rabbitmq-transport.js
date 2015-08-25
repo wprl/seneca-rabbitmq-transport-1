@@ -99,10 +99,10 @@ module.exports = function( options ) {
     var client_options = seneca.util.clean(_.extend({},options[type],args))
 
     amqp.connect('amqp://localhost', function (error, connection) {
-      if (error) return done(error)
+      if (error) return client_done(error)
 
       connection.createChannel(function (error, channel) {
-        if (error) return done(error);
+        if (error) return client_done(error);
 
         tu.make_client( seneca, make_send, client_options, client_done )
 
